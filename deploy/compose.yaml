@@ -1,0 +1,51 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    env_file: .env
+    environment:
+      ENVIRONMENT: production
+      RATE_LIMIT_BACKEND: mongo
+      DATASET_ROOT: /datasets
+    expose: ["8000"]
+    volumes:
+      - ../backend/datasets:/datasets:ro
+    restart: unless-stopped
+    read_only: true
+    tmpfs: ["/tmp"]
+    cap_drop: [ALL]
+    mem_limit: 1g
+    cpus: 2
+    security_opt: ["no-new-privileges:true"]
+    networks:
+      private:
+        ipv4_address: 172.30.91.3
+    logging:
+      options: {max-size: "10m", max-file: "3"}
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.web
+    environment:
+      HEALTHPATCH_DOMAIN: ${HEALTHPATCH_DOMAIN:?Set a real deployment domain}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      api: {condition: service_healthy}
+    restart: unless-stopped
+    networks:
+      private:
+        ipv4_address: 172.30.91.2
+    logging:
+      options: {max-size: "10m", max-file: "3"}
+networks:
+  private:
+    ipam:
+      config:
+        - subnet: 172.30.91.0/24
+volumes:
+  caddy_data:
+  caddy_config:

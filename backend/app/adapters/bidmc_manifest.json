@@ -1,0 +1,14 @@
+{
+  "dataset": "BIDMC",
+  "version": "1.0.0",
+  "source": "https://physionet.org/content/bidmc/1.0.0/",
+  "license": "Open Data Commons Attribution License v1.0",
+  "records": {
+    "bidmc_01": {
+      "Signals.csv": "21495169cc36e82352d8e12cc6430927946d02d240b030715088d02396ea2d5c",
+      "Numerics.csv": "27d43794cf2e7150db10e8bfe61d2bfdb26873a8f1629ffc5fbee5c9a4eb6ef5",
+      "Fix.txt": "5acedc860fdf03ac117b333bc0ef6b6579fe066382ba89abfd14ccc863b83831",
+      "Breaths.csv": "698846517e27e7789d855875bae9774db3c189900efae8e486c300ed5ce58037"
+    }
+  }
+}
