@@ -11,3 +11,5 @@ __pycache__/
 backend/datasets/
 docs/qa-*.png
 deploy/secrets/
+
+.vercel/

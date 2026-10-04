@@ -96,3 +96,7 @@ Startup creates additive indexes; it is not a migration/backfill system. Existin
 - Empty dashboard: start a source; an empty workspace is intentional before telemetry exists.
 - Session expired: sign in again. Multi-tab refresh coordination still needs hardening before production.
 - Phone link does not open a call: a telephone handler must be installed on that computer; the application does not itself place calls.
+
+## Public Vercel demonstration
+Vercel builds with VITE_PUBLIC_DEMO=true. This loads the isolated DemoApp rather than the authenticated backend application. All readings are generated in the browser; no backend credentials, accounts or patient data are used. Use the normal local development command for the full research application.
+
